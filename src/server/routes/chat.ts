@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { getAIResponse } from '../llm/ollama';
+import { getAIResponseStream } from '../llm/ollama';
 
 const router = Router();
 
@@ -7,18 +7,24 @@ interface ChatRequestBody {
   message: string;
 }
 
-router.post('/chat', async (req: Request<{}, {}, ChatRequestBody>, res: Response) => {
+router.post('/query', async (req: Request<{}, {}, ChatRequestBody>, res: Response) => {
   const { message } = req.body;
-
-    if (!message) {
+  if (!message) {
     return res.status(400).json({ error: "Message is required" });
-  } 
+  }
+
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
  
   try {
-    const aiResponse= await getAIResponse(message);
-    res.json({ reply: aiResponse });
+    for await (const token of getAIResponseStream(message)) {
+      res.write(token);
+    }
+    res.end();
   } catch (error) {
-    res.status(500).json({ error: 'AI processing failed' });
+    console.error(error);
+    res.status(500).end('Error streaming response');
   }
 });
 

@@ -1,12 +1,17 @@
 import express from 'express';
 import cors from 'cors';
 import router from './routes/chat';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+const frontendOrigin = process.env.FRONTEND_ORIGIN || 'http://localhost:5173'
+
 app.use(cors({
-  origin: 'http://localhost:5173'
+  origin: frontendOrigin,
 }));
 
 app.use(express.json());
