@@ -1,9 +1,14 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
-import router from './routes/chat';
-import dotenv from 'dotenv';
+import router from './routes/chatRoutes';
+import './db/db';
 
-dotenv.config();
+
+
+
 
 const app = express();
 const port = process.env.PORT || 3000;
