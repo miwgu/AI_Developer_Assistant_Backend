@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: aida-mysql-container           # Container name for MySQL DB
+    restart: always
+    environment:
+      # MySQL root and user credentials
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=chatdb
+      - MYSQL_USER=myuser
+      - MYSQL_PASSWORD=mypassword
+    ports:
+      - "3307:3306"                      # Map MySQL port to host
+    volumes:
+      - mysql_data:/var/lib/mysql        # Persist database data
+    networks:
+      aida-net:
+        ipv4_address: 172.25.0.30
+
+  aida-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aida-backend         # Container name for backend
+    ports:
+      - "3001:3001"                      # Expose backend port to host
+    environment:
+      # Backend app DB connection environment variables
+      - PORT=3001
+      - DB_HOST=mysql               # Use service name for DB host
+      - DB_PORT=3306
+      - DB_USER=myuser
+      - DB_PASSWORD=mypassword
+      - DB_NAME=chatdb
+    networks:
+      aida-net:
+        ipv4_address: 172.25.0.20
+    depends_on:
+      - mysql
+
+networks:
+  aida-net:
+    external: true
+
+volumes:
+  mysql_data:

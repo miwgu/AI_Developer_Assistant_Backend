@@ -1,7 +1,8 @@
 import { Ollama } from "langchain/llms/ollama";
 
 const ollama = new Ollama({
-  model: "tinyllama", // "mistral"
+  model: "mistral", // "mistral"OR"tinyllama"
+  baseUrl: process.env.OLLAMA_URL || "http://127.0.0.1:11434",
 });
 
 export async function* getAIResponseStream(prompt: string): AsyncGenerator<string> {
