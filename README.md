@@ -10,9 +10,9 @@
 
 ## 🚀 Tech Stack
 
-- **Frontend:** React (TypeScript + Vite) [Link Text](https://github.com/miwgu/AI_Developer_Assistant_Frontend)
+- **Frontend:** React (TypeScript + Vite) [Frontend](https://github.com/miwgu/AI_Developer_Assistant_Frontend)
 - **Backend:** Express.js (TypeScript)
-- **LLM Integration:** LangChain + Mistral (via Ollama) [Link Text](https://ollama.com/)
+- **LLM Integration:** LangChain + Mistral (via Ollama) [Ollama](https://ollama.com/)
 - **Database:** MySQL (with UUID primary keys)
 - **Containerization:** Docker, Docker Compose
 
@@ -92,6 +92,7 @@ docker-compose up -d --build
 ```bash
 docker-compose down
 ```
+---
 
 ## 💾 Database Setup
 Login to MySQL container: input password 
@@ -154,7 +155,7 @@ chmod +x ./node_modules/.bin/ts-node
 | POST   | /api/query      | Send a question to the LLM   | `{ "question": "string" }`      | `{ "response": "string" }`        |
 | GET    | /api/getchatlog | Retrieve all chat history    | None                           | `[ { "id": "uuid", "question": "string", "response": "string", "created_at": "timestamp" }, ... ]` |
 
-
+---
 
 ## 📝 Future Improvements 
 - Add user authentication (JWT)
