@@ -67,7 +67,7 @@ If using a different model, update the model name in ollama.ts.
 ---
 
 ## 🌍Enviroment file
-- .env file should be added under the projekt 
+- Add a .env file in the project root
 - change settings for Docker or Local 
 
 ---
