@@ -68,7 +68,30 @@ If using a different model, update the model name in ollama.ts.
 
 ## 🌍Enviroment file
 - Add a .env file in the project root
-- change settings for Docker or Local 
+- change settings for Docker or Local
+```bash
+#PORT=3000
+# FRONTEND_ORIGIN=http://localhost:5173
+
+# Database local settings
+#DB_HOST=172.17.112.1
+#DB_USER=****
+#DB_PASSWORD=****         
+#DB_NAME=ai_chat_db2025   
+#DB_PORT=3306             
+
+
+PORT=3001
+FRONTEND_ORIGIN=http://localhost:4173
+OLLAMA_URL=http://host.docker.internal:11434
+
+# Database Docker
+DB_HOST=mysql
+DB_USER=myuser
+DB_PASSWORD=mypassword
+DB_NAME=chatdb
+DB_PORT=3306
+```
 
 ---
 
