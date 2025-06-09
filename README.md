@@ -181,6 +181,10 @@ chmod +x ./node_modules/.bin/ts-node
 ---
 
 ## 📝 Future Improvements 
+
+- Change to OpenAI　gpt-4.1-nano
+- Change to PostgresSQL(pgvector)
+- use RAG(Retrieval Augmented Generation)
 - Add user authentication (JWT)
 - Delete history entries by ID
 - Create and group chat sessions by topic
